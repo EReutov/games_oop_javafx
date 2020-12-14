@@ -5,7 +5,7 @@ import ru.job4j.chess.ImpossibleMoveException;
 public interface Figure {
     Cell position();
 
-    Cell[] way(Cell dest) throws ImpossibleMoveException;
+    Cell[] way(Cell dest);
 
     default String icon() {
         return String.format(

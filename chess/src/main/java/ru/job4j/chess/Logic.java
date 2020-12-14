@@ -12,15 +12,14 @@ public final class Logic {
         figures[index++] = figure;
     }
 
-    public void move(Cell source, Cell dest)
-            throws FigureNotFoundException, ImpossibleMoveException, OccupiedCellException {
+    public void move(Cell source, Cell dest) {
         int index = findBy(source);
         Cell[] steps = figures[index].way(dest);
         free(steps);
         figures[index] = figures[index].copy(dest);
     }
 
-    private boolean free(Cell[] steps) throws OccupiedCellException {
+    private boolean free(Cell[] steps) {
         for (Figure f : figures) {
             if (f != null) {
                 for (Cell c : steps) {
@@ -38,7 +37,7 @@ public final class Logic {
         index = 0;
     }
 
-    private int findBy(Cell cell) throws FigureNotFoundException {
+    private int findBy(Cell cell) {
         for (int index = 0; index != figures.length; index++) {
             Figure figure = figures[index];
             if (figure != null && figure.position().equals(cell)) {
@@ -47,4 +46,9 @@ public final class Logic {
         }
         throw new FigureNotFoundException();
     }
+
+    public Figure findFigure(Cell cell) {
+        return figures[findBy(cell)];
+    }
+
 }
